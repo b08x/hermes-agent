@@ -1,0 +1,693 @@
+# Instincts generated from https://github.com/b08x/hermes-agent
+# Generated: 2026-06-01T03:32:17.932Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: hermes-agent-commit-conventional
+trigger: "when writing a commit message"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Commit Conventional
+
+## Action
+
+Use conventional commit format with prefixes: fix, feat, chore, docs
+
+## Evidence
+
+- 21 commits analyzed
+- Detected conventional commit pattern
+- Examples: chore(model-picker): refresh provider picker descriptions, feat(model-picker): show short description on grouped provider rows
+
+---
+id: hermes-agent-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Commit Length
+
+## Action
+
+Write moderate-length commit messages (~72 characters)
+
+## Evidence
+
+- Average commit message length: 72 chars
+- Based on 21 commits
+
+---
+id: hermes-agent-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Naming Files
+
+## Action
+
+Use kebab-case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: kebab-case
+
+---
+id: hermes-agent-import-alias
+trigger: "when importing modules"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Import Alias
+
+## Action
+
+Use path aliases (@/, ~/) instead of relative imports
+
+## Evidence
+
+- Import analysis shows alias pattern
+- Example: import { x } from '@/lib/x'
+
+---
+id: hermes-agent-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: hermes-agent-arch-type-based
+trigger: "when adding new code"
+confidence: 0.8
+domain: architecture
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Arch Type Based
+
+## Action
+
+Place code in the appropriate type folder (components/, services/, utils/, etc.)
+
+## Evidence
+
+- Type-based module organization detected
+- Folders: 
+
+---
+id: hermes-agent-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: hermes-agent-test-framework
+trigger: "when writing tests"
+confidence: 0.9
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Test Framework
+
+## Action
+
+Use vitest as the test framework
+
+## Evidence
+
+- Test framework detected: vitest
+- File pattern: *.test.ts
+
+---
+id: hermes-agent-test-naming
+trigger: "when creating a test file"
+confidence: 0.85
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Test Naming
+
+## Action
+
+Name test files using the pattern: *.test.ts
+
+## Evidence
+
+- File pattern: *.test.ts
+- Consistent across test files
+
+---
+id: hermes-agent-workflow-feature-development
+trigger: "when implementing a new feature"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Workflow Feature Development
+
+## Action
+
+Follow the feature-development workflow:
+1. Add feature implementation
+2. Add tests for feature
+3. Update documentation
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~11x per month
+- Files: apps/bootstrap-installer/src/*, apps/bootstrap-installer/src/components/*, apps/bootstrap-installer/src/lib/*
+
+---
+id: hermes-agent-workflow-model-provider-label-and-description-update
+trigger: "when doing model provider label and description update"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Workflow Model Provider Label And Description Update
+
+## Action
+
+Follow the model-provider-label-and-description-update workflow:
+1. Edit hermes_cli/models.py to update PROVIDER_GROUPS, labels, or descriptions.
+2. Update UI logic in hermes_cli/main.py and/or gateway/platforms/telegram.py to reflect new grouping/description logic.
+3. Update or add tests in tests/hermes_cli/test_provider_groups.py to assert new grouping/description logic.
+4. Optionally update provider plugin __init__.py files for provider-specific copy.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: hermes_cli/models.py, hermes_cli/main.py, gateway/platforms/telegram.py
+
+---
+id: hermes-agent-workflow-add-or-update-model-in-provider-lists
+trigger: "when doing add or update model in provider lists"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Workflow Add Or Update Model In Provider Lists
+
+## Action
+
+Follow the add-or-update-model-in-provider-lists workflow:
+1. Edit hermes_cli/models.py to add or update the model in provider lists.
+2. Edit agent/model_metadata.py to update context lengths or other metadata if needed.
+3. Optionally update fallback snapshots or default model selection logic.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: hermes_cli/models.py, agent/model_metadata.py
+
+---
+id: hermes-agent-workflow-docker-uid-gid-chown-fix
+trigger: "when doing docker uid gid chown fix"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Workflow Docker Uid Gid Chown Fix
+
+## Action
+
+Follow the docker-uid-gid-chown-fix workflow:
+1. Edit docker/stage2-hook.sh to validate or fix UID/GID handling.
+2. Edit hermes_cli/config.py or hermes_cli/container_boot.py to ensure chown logic is correct.
+3. Add or update tests in tests/hermes_cli/test_container_boot.py or tests/hermes_cli/test_ensure_hermes_home_uid_34107.py.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: docker/stage2-hook.sh, hermes_cli/config.py, hermes_cli/container_boot.py
+
+---
+id: hermes-agent-workflow-desktop-app-feature-or-fix
+trigger: "when doing desktop app feature or fix"
+confidence: 0.75
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Workflow Desktop App Feature Or Fix
+
+## Action
+
+Follow the desktop-app-feature-or-fix workflow:
+1. Edit or add files in apps/desktop/src/app/ for UI changes.
+2. Edit apps/desktop/electron/main.cjs and related Electron scripts for backend/bootstrapping logic.
+3. Edit apps/desktop/scripts/ for build or runtime support.
+4. Update apps/desktop/README.md or documentation as needed.
+5. Optionally update or add tests in apps/desktop/src/app/ or scripts.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~5x per month
+- Files: apps/desktop/src/app/**/*.tsx, apps/desktop/electron/*.cjs, apps/desktop/scripts/*.cjs
+
+---
+id: hermes-agent-workflow-update-or-fix-cli-skill-sync
+trigger: "when doing update or fix cli skill sync"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Workflow Update Or Fix Cli Skill Sync
+
+## Action
+
+Follow the update-or-fix-cli-skill-sync workflow:
+1. Refactor or add helper in hermes_cli/main.py to centralize skill sync logic.
+2. Call the helper from multiple CLI entrypoints (cmd_chat, cmd_dashboard, cmd_gateway).
+3. Optionally update or add tests for skill sync behavior.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: hermes_cli/main.py
+
+---
+id: hermes-agent-workflow-fix-or-harden-env-secret-forwarding
+trigger: "when doing fix or harden env secret forwarding"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/b08x/hermes-agent
+---
+
+# Hermes Agent Workflow Fix Or Harden Env Secret Forwarding
+
+## Action
+
+Follow the fix-or-harden-env-secret-forwarding workflow:
+1. Edit tools/environments/docker.py to fix secret forwarding logic.
+2. Update or add tests in tests/tools/test_docker_environment.py.
+3. Optionally update scripts/release.py for attribution if needed.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: tools/environments/docker.py, tests/tools/test_docker_environment.py, scripts/release.py
+
+---
+id: hermes-agent-instinct-file-naming
+trigger: "When creating or renaming a file"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct File Naming
+
+## Action
+
+Use kebab-case for file names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.files
+- Observed in apps/bootstrap-installer/package.json
+
+---
+id: hermes-agent-instinct-function-naming
+trigger: "When defining a function"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Function Naming
+
+## Action
+
+Use camelCase for function names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.functions
+- Seen in hermes_cli/main.py
+
+---
+id: hermes-agent-instinct-class-naming
+trigger: "When defining a class"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Class Naming
+
+## Action
+
+Use PascalCase for class names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.classes
+
+---
+id: hermes-agent-instinct-constant-naming
+trigger: "When defining a constant"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Constant Naming
+
+## Action
+
+Use SCREAMING_SNAKE_CASE for constant names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.constants
+
+---
+id: hermes-agent-instinct-import-alias
+trigger: "When importing modules"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Import Alias
+
+## Action
+
+Use alias import style
+
+## Evidence
+
+- Pattern in codeStyle.importStyle
+
+---
+id: hermes-agent-instinct-named-exports
+trigger: "When exporting modules"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Named Exports
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- Pattern in codeStyle.exportStyle
+
+---
+id: hermes-agent-instinct-test-file-pattern
+trigger: "When adding a test file"
+confidence: 0.9
+domain: testing
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Test File Pattern
+
+## Action
+
+Name the file with the pattern *.test.ts
+
+## Evidence
+
+- Pattern in testing.filePattern
+- Seen in tests/hermes_cli/test_provider_groups.py
+
+---
+id: hermes-agent-instinct-test-framework
+trigger: "When writing tests"
+confidence: 0.9
+domain: testing
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Test Framework
+
+## Action
+
+Use vitest as the testing framework
+
+## Evidence
+
+- Pattern in testing.framework
+- Seen in tests/hermes_cli/test_provider_groups.py
+
+---
+id: hermes-agent-instinct-unit-test
+trigger: "When writing tests"
+confidence: 0.9
+domain: testing
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Unit Test
+
+## Action
+
+Write unit tests for new features or changes
+
+## Evidence
+
+- Pattern in testing.testTypes
+- Seen in commit sequences for feature-development
+
+---
+id: hermes-agent-instinct-conventional-commit
+trigger: "When writing a commit message"
+confidence: 0.95
+domain: git
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Conventional Commit
+
+## Action
+
+Use Conventional Commits format with prefixes: fix, feat, chore, docs
+
+## Evidence
+
+- Pattern in commits.prefixes
+- Seen in commit: feat(model-picker): show short description on grouped provider rows
+
+---
+id: hermes-agent-instinct-commit-length
+trigger: "When writing a commit message"
+confidence: 0.8
+domain: git
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Commit Length
+
+## Action
+
+Keep the commit message around 72 characters on average
+
+## Evidence
+
+- Pattern in commits.averageLength
+
+---
+id: hermes-agent-instinct-model-provider-label-update
+trigger: "When updating model provider labels, groupings, or descriptions"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Model Provider Label Update
+
+## Action
+
+Edit hermes_cli/models.py, update UI logic in hermes_cli/main.py and/or gateway/platforms/telegram.py, update/add tests in tests/hermes_cli/test_provider_groups.py, and optionally update plugins/model-providers/*/__init__.py
+
+## Evidence
+
+- Workflow: model-provider-label-and-description-update
+- Seen in commit sequences and files: hermes_cli/models.py, hermes_cli/main.py, tests/hermes_cli/test_provider_groups.py
+
+---
+id: hermes-agent-instinct-add-or-update-model
+trigger: "When adding a new model or updating model metadata"
+confidence: 0.85
+domain: workflow
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Add Or Update Model
+
+## Action
+
+Edit hermes_cli/models.py and agent/model_metadata.py, and optionally update fallback snapshots or default model selection logic
+
+## Evidence
+
+- Workflow: add-or-update-model-in-provider-lists
+- Seen in commit sequences and files: hermes_cli/models.py, agent/model_metadata.py
+
+---
+id: hermes-agent-instinct-docker-chown-fix
+trigger: "When fixing or hardening UID/GID handling in Docker deployments"
+confidence: 0.85
+domain: workflow
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Docker Chown Fix
+
+## Action
+
+Edit docker/stage2-hook.sh, hermes_cli/config.py, hermes_cli/container_boot.py, and update/add tests in tests/hermes_cli/test_container_boot.py or tests/hermes_cli/test_ensure_hermes_home_uid_34107.py
+
+## Evidence
+
+- Workflow: docker-uid-gid-chown-fix
+- Seen in commit sequences and files: docker/stage2-hook.sh, hermes_cli/config.py, hermes_cli/container_boot.py
+
+---
+id: hermes-agent-instinct-desktop-feature-or-fix
+trigger: "When adding a feature, fixing a bug, or refactoring the Hermes desktop app"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Desktop Feature Or Fix
+
+## Action
+
+Edit/add files in apps/desktop/src/app/, apps/desktop/electron/, apps/desktop/scripts/, update apps/desktop/README.md, and optionally update/add tests
+
+## Evidence
+
+- Workflow: desktop-app-feature-or-fix
+- Seen in commit sequences and files: apps/desktop/src/app/**/*.tsx, apps/desktop/electron/*.cjs, apps/desktop/scripts/*.cjs
+
+---
+id: hermes-agent-instinct-cli-skill-sync
+trigger: "When fixing or updating skill sync for CLI, dashboard, or gateway"
+confidence: 0.8
+domain: workflow
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Cli Skill Sync
+
+## Action
+
+Refactor or add helper in hermes_cli/main.py, call from multiple entrypoints, and optionally update/add tests
+
+## Evidence
+
+- Workflow: update-or-fix-cli-skill-sync
+- Seen in commit sequences and files: hermes_cli/main.py
+
+---
+id: hermes-agent-instinct-env-secret-forwarding-fix
+trigger: "When fixing or hardening environment variable/secret forwarding to Docker or sandboxes"
+confidence: 0.8
+domain: workflow
+source: repo-analysis
+source_repo: b08x/hermes-agent
+---
+
+# Hermes Agent Instinct Env Secret Forwarding Fix
+
+## Action
+
+Edit tools/environments/docker.py, update/add tests in tests/tools/test_docker_environment.py, and optionally update scripts/release.py
+
+## Evidence
+
+- Workflow: fix-or-harden-env-secret-forwarding
+- Seen in commit sequences and files: tools/environments/docker.py, tests/tools/test_docker_environment.py
+
